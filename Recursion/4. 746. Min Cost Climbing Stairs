@@ -1,0 +1,22 @@
+class Solution {
+public:
+
+    int helper( vector<int>& cost, int index){
+        // base condition
+       if (index<0) return 0; 
+        // we can start from 0 or 1 
+        //so add the cost of what place you are choosing
+       if(index ==0 || index==1) return cost[index];
+
+        
+        // can take 2 steps
+        // minimize the cost - minimize- recursion
+        return cost[index]+ 
+        min( helper(cost,index-1), helper(cost, index-2));
+    }
+    int minCostClimbingStairs(vector<int>& cost) {
+        int n= cost.size();
+        // need to check here that which cost is the minimum cost
+       return min(helper(cost,n-1), helper(cost,n-2));
+     }
+};
