@@ -21,3 +21,28 @@ public:
         return helper(nums,0);
     }
 };
+
+
+
+class Solution {
+public:
+    // n to 0 
+    int helper(vector<int>& nums, int index){
+        int n=nums.size();
+        // base condition: no house left to rob : reached <0
+            if(index<0) return 0;
+
+        // rob
+        int rob = nums[index]+ helper(nums, index-2);
+
+        // don't rob
+        int notRob = helper(nums, index-1);
+
+        return max(rob, notRob);
+    }
+    
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        return helper(nums, n-1);
+    }
+};
