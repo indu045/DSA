@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void helper(int n, int open , int closed, vector<string>&res, string curr){
+        // base condition: when we will push back the current
+        if(closed==n){
+            res.push_back(curr);
+            return;
+        }
+        // check
+        // 1st no of open is always>=closed at any point
+        // 2nd open/closed <=n
+        
+        // pick open
+            if(open<n){
+                helper(n,open,closed,res,curr +'(');
+            }
+        // pick close
+        if(open>closed){
+            helper(n,open,closed,res, curr + ')');
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string>res;
+        helper(n,0,0,res,"");
+        return res;
+    }
+};
