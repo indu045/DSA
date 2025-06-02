@@ -1,6 +1,6 @@
 class Solution {
 public:
-
+// 0 to n
     int helper( vector<int>& cost, int index){
         // base condition
        if (index<0) return 0; 
@@ -18,5 +18,30 @@ public:
         int n= cost.size();
         // need to check here that which cost is the minimum cost
        return min(helper(cost,n-1), helper(cost,n-2));
+     }
+};
+
+
+
+
+class Solution {
+public:
+// n to 0
+
+    int helper(vector<int>& cost, int index){
+        int n = cost.size();
+        // base condition
+        if(index<0) return 0;
+        if(index==0|| index==1) return cost[index];
+
+        return cost[index] + min(helper(cost, index-1), helper(cost, index-2));
+
+    }
+    
+    int minCostClimbingStairs(vector<int>& cost) {
+        int n = cost.size();
+        //can climb either on step n-1 or n-2
+        //So the minimum cost to reach the top is:
+        return min(helper(cost, n-1), helper(cost, n-2));
      }
 };
