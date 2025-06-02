@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int tribonacci(int n) {
+        // base conditions
+        if(n<=0) return 0;
+        if(n<=2) return 1;
+        //Places
+        //N+3 = N+ N+1 + N+2
+        // 3  = 0 + 1 + 2 
+        // when we need to find for n=0 so we take n=-3
+        // 0 = -3+-2+-1
+        // so we are reducing 1, 2, 3
+        // we will return 
+        return tribonacci(n-1)+tribonacci(n-2)+tribonacci(n-3);
+    }
+};
