@@ -1,0 +1,59 @@
+class Solution {
+public:
+    void helper(vector<int>&nums, int index, vector<vector<int>>&res, vector<int>curr){
+
+        // base condition
+        // thought of wrong condition
+            if(index==nums.size()){
+                res.push_back(curr);
+                return;
+            }
+
+        // include
+            curr.push_back(nums[index]);
+            helper(nums, index+1,res, curr);
+
+            curr.pop_back();
+        //exculde
+            helper(nums, index+1, res, curr);
+
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> res;
+        vector<int>curr;
+        // inculde exculde problem 
+        helper(nums, 0, res, curr);
+        //return res
+        return res;
+    }
+};
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+class Solution {
+public:
+   // doing exculde first then inculde
+
+   void helper(vector<int>&nums, int index, vector<vector<int>>&res, vector<int>curr){
+    // base condition
+        if(index == nums.size()){
+            res.push_back(curr);
+            return;
+        }
+
+    //exculde
+        helper(nums,index+1,res,curr);
+
+    // include
+        curr.push_back(nums[index]);
+        helper(nums,index+1,res,curr);
+   }
+    vector<vector<int>> subsets(vector<int>& nums) {
+       vector<vector<int>>res;
+       vector<int>curr;
+
+       helper(nums, 0, res, curr);
+       return res;
+    }
+};
