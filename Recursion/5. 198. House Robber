@@ -1,0 +1,23 @@
+class Solution {
+public:
+ // 0 to n
+    int helper (vector<int>& nums, int index){
+        int n=nums.size();
+        // base condition: no houses left to rob
+        if(index>=n) return 0;
+
+        //rob : add money of the robbed house as well
+        int rob = nums[index]+helper(nums, index+2);
+
+        // dont rob
+        int noRob = helper(nums, index+1);
+
+        return max(rob, noRob);
+    }
+    int rob(vector<int>& nums) {
+        // rob or not rob
+        // maximize the money- recursion
+        int n=nums.size();
+        return helper(nums,0);
+    }
+};
