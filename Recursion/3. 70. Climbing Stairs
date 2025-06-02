@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int climbStairs(int n) {
+        //base conditions
+        if(n<=2) return n;
+        // every step we have 2 option to jump on that or not
+        //1st way : we reached n-1 then we need to jump 1 step
+        // 2nd way : we reached n-2 then we need to jump 2 steps
+        return climbStairs(n-1) + climbStairs(n-2);
+
+    }
+};
