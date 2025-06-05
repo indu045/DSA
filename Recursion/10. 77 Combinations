@@ -1,0 +1,63 @@
+// 0 to n
+class Solution {
+public:
+//backtracking
+
+    void helper(int index, int n, int k , vector<vector<int>>& res, vector<int> curr){
+        //base - size is = to k
+        if(curr.size()==k){
+            res.push_back(curr);
+            return;
+        } 
+
+     
+        // inculde which one
+        // curr = [i,j]
+        // j> i && j<=n && i shd not be = j => make look where take index to n : this make sure all three
+        //both inc and exc part
+        for(int i = index ; i<=n; i++){
+            curr.push_back(i);
+            helper(i+1, n, k , res, curr);
+            curr.pop_back();
+        }
+       
+
+    }
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> res;
+        vector<int>curr;
+        helper(1,n,k,res,curr);
+        return res;
+    }
+};
+
+// TC : O(n^k)
+//SC: O(k) — recursion stack depth and current combination vector can grow up to size K
+
+----------------------------------------------------------------------------------------------------------------------
+
+class Solution {
+public:
+// n to 0
+
+    void helper(int index, int n , int k , vector<vector<int>>&res , vector<int> curr){
+        // base if k become 0
+        if(curr.size()==k) {
+            res.push_back(curr);
+            return;
+        }
+        // backtracking
+        for(int i= index; i>=1; i--){
+            curr.push_back(i);
+            helper(i-1, n,k,res,curr);
+            curr.pop_back();
+        }
+    }
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>>res;
+        vector<int>curr;
+
+        helper(n,n,k,res,curr);
+        return res;
+    }
+};
