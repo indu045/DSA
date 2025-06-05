@@ -61,3 +61,7 @@ public:
         return res;
     }
 };
+
+Time complexity: 𝑂(𝑛^𝑘) k recursive calls from 𝑛 choices.
+
+Space complexity: 𝑂(𝑘) Maximum depth of recursion
