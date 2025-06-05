@@ -1,0 +1,35 @@
+class Solution {
+public:
+
+    int helper(string& s , int index){
+        //from index to 0 
+        //base case can be when it become zero when you go 
+        //empty string is the valid string
+        if(index <= 0) return 1;
+        
+        int res=0;
+
+        // we choose 1 
+        if(s[index]!='0'){
+            res = helper(s, index-1);
+        }
+ 
+        // we choose 2
+      if(index > 0 && (s[index - 1] == '1' || (s[index - 1] == '2' && s[index] <= '6'))){
+            res += helper(s, index - 2);
+        }
+
+       return res;
+    }
+    int numDecodings(string s) {
+        if(s[0]=='0') return 0;
+        return helper(s, s.size()-1);
+
+
+    }
+};
+
+// i added 1+helper()
+//You are not counting steps → you are counting paths.
+//Paths naturally accumulate through recursion — no need to +1 at each level.
+
