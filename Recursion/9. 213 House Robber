@@ -1,0 +1,55 @@
+class Solution {
+public:
+// 0 to n
+    int helper(vector<int>&nums, int index, int n){
+        if(index>=n) return 0;
+
+        // rob
+            int inc = nums[index]+helper(nums, index+2, n);
+        // not rob
+            int exc = helper(nums, index+1, n);
+
+      return max(inc, exc);
+    }
+
+
+    int rob(vector<int>& nums) {
+        // it is in circle so we can't rob first and last have to choose only one
+    int n1=nums.size();
+    
+       if (n1 == 0) return 0;
+       if (n1 == 1) return nums[0];
+    return max(helper(nums,0,n1-1), helper(nums,1,n1));
+    }
+};
+---------------------------------------------------------------------------------------------------------------------------
+
+class Solution {
+public:
+// n to 0
+    int helper(vector<int>&nums, int index, int n){
+        //Once index becomes less than n, you're outside the allowed range
+        //once you're outside the range, you can’t rob any house — so the value is 0.
+        if(index<n) return 0;
+
+        // rob
+            int inc = nums[index]+helper(nums, index-2,n);
+        // not rob
+            int exc = helper(nums, index-1,n);
+
+      return max(inc, exc);
+    }
+
+
+    int rob(vector<int>& nums) {
+        // it is in circle so we can't rob first and last have to choose only one
+    int n1=nums.size();
+    
+       if (n1 == 0) return 0;
+       if (n1 == 1) return nums[0];
+    return max(helper(nums, n1-1, 1), helper(nums, n1-2, 0));
+    }
+};
+
+// tc O(2^n) 2brances n length
+// sc O(n) (recursive call stack)
